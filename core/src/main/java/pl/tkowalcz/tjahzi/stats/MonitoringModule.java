@@ -1,8 +1,5 @@
 package pl.tkowalcz.tjahzi.stats;
 
-import io.netty.buffer.ByteBuf;
-import io.netty.handler.codec.http.HttpResponseStatus;
-
 import java.time.Clock;
 
 public interface MonitoringModule {
@@ -31,7 +28,7 @@ public interface MonitoringModule {
 
     void incrementHttpResponses();
 
-    void incrementHttpErrors(HttpResponseStatus status, ByteBuf content);
+    void incrementHttpErrors(int status, String content);
 
     void recordResponseTime(long time);
 }

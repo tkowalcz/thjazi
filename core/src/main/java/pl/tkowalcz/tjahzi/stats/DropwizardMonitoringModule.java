@@ -4,8 +4,6 @@ import com.codahale.metrics.Counter;
 import com.codahale.metrics.Meter;
 import com.codahale.metrics.MetricRegistry;
 import com.codahale.metrics.Timer;
-import io.netty.buffer.ByteBuf;
-import io.netty.handler.codec.http.HttpResponseStatus;
 
 import java.time.Clock;
 import java.util.concurrent.TimeUnit;
@@ -101,7 +99,7 @@ public class DropwizardMonitoringModule implements MonitoringModule {
     }
 
     @Override
-    public void incrementHttpErrors(HttpResponseStatus status, ByteBuf content) {
+    public void incrementHttpErrors(int status, String content) {
         responseErrors.inc();
     }
 

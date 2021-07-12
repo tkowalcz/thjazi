@@ -1,17 +1,10 @@
 package pl.tkowalcz.tjahzi.http;
 
-import io.netty.util.concurrent.FastThreadLocal;
 import pl.tkowalcz.tjahzi.utils.TextBuilder;
 
 public class TextBuilders {
 
-    private static final FastThreadLocal<TextBuilder> THREAD_LOCAL = new FastThreadLocal<TextBuilder>() {
-
-        @Override
-        protected TextBuilder initialValue() {
-            return new TextBuilder();
-        }
-    };
+    private static final ThreadLocal<TextBuilder> THREAD_LOCAL = ThreadLocal.withInitial(TextBuilder::new);
 
     public static TextBuilder threadLocal() {
         TextBuilder result = THREAD_LOCAL.get();

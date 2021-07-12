@@ -39,7 +39,10 @@ class RequestAndResponseHandler extends ChannelDuplexHandler {
         monitoringModule.incrementHttpResponses();
         if (msg.status().codeClass() != HttpStatusClass.SUCCESS) {
             System.out.println(msg.content().toString(Charset.defaultCharset()));
-            monitoringModule.incrementHttpErrors(msg.status(), msg.content());
+            monitoringModule.incrementHttpErrors(
+                    msg.status().code(),
+                    msg.content().toString(Charset.defaultCharset())
+            );
         }
 
         if (!HttpUtil.isKeepAlive(msg)) {

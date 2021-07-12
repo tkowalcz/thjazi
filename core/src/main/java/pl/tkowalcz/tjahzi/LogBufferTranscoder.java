@@ -2,7 +2,6 @@ package pl.tkowalcz.tjahzi;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
-import io.netty.util.internal.StringUtil;
 import org.agrona.DirectBuffer;
 import org.agrona.concurrent.AtomicBuffer;
 import pl.tkowalcz.tjahzi.http.TextBuilders;
@@ -22,7 +21,7 @@ public class LogBufferTranscoder {
         this.staticLabels = staticLabels;
         this.staticLabelsString = buildLabelsStringIncludingStatic(
                 staticLabels,
-                StringUtil.EMPTY_STRING,
+                "",
                 TextBuilders.threadLocal().append("{ ")
         ).toString();
 

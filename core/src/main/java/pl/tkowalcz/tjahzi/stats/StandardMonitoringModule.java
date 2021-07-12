@@ -1,12 +1,9 @@
 package pl.tkowalcz.tjahzi.stats;
 
-import io.netty.buffer.ByteBuf;
-import io.netty.handler.codec.http.HttpResponseStatus;
 import org.agrona.concurrent.SystemEpochClock;
 import org.agrona.concurrent.UnsafeBuffer;
 import org.agrona.concurrent.errors.DistinctErrorLog;
 
-import java.nio.charset.Charset;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class StandardMonitoringModule implements MonitoringModule {
@@ -119,12 +116,10 @@ public class StandardMonitoringModule implements MonitoringModule {
     }
 
     @Override
-    public void incrementHttpErrors(HttpResponseStatus status, ByteBuf content) {
+    public void incrementHttpErrors(int status, String content) {
         failedHttpRequests.incrementAndGet();
         distinctErrorLog.record(
-                new RuntimeException(
-                        content.toString(Charset.defaultCharset())
-                )
+                new RuntimeException(content)
         );
     }
 

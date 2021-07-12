@@ -1,8 +1,5 @@
 package pl.tkowalcz.tjahzi.stats;
 
-import io.netty.buffer.ByteBuf;
-import io.netty.handler.codec.http.HttpResponseStatus;
-
 public class EmptyMonitoringModule implements MonitoringModule {
 
     @Override
@@ -46,7 +43,7 @@ public class EmptyMonitoringModule implements MonitoringModule {
     }
 
     @Override
-    public void incrementHttpErrors(HttpResponseStatus status, ByteBuf responseContent) {
+    public void incrementHttpErrors(int status, String content) {
     }
 
     @Override
